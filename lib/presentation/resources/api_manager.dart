@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -6,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:gallery_task/data/models/GalleryResponse.dart';
 import 'package:gallery_task/presentation/resources/utilities.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../data/models/UserData.dart';
 import 'constants.dart';
@@ -21,8 +19,8 @@ class ApiManager {
     Response response = await dio.post(
       "${Constants.baseUrl}auth/login",
       data: {
-        'email': "jessica.pouros@example.org",
-        'password': "password",
+        'email': userName,
+        'password': password,
       },
     );
     try {
@@ -37,15 +35,14 @@ class ApiManager {
   }
 
   Future<GalleryResponse> getImages() async {
-    String token = await Utilities.getToken(); // Await the token retrieval
+    String token = await Utilities.getToken();
 
     print("TOKEN IS : $token");
     Response response = await dio.get(
       "${Constants.baseUrl}my-gallery",
       options: Options(
         headers: {
-          'Authorization':
-              'Bearer $token', // Pass the token in the Authorization header
+          'Authorization': 'Bearer $token',
         },
       ),
     );
@@ -78,8 +75,7 @@ class ApiManager {
       data: formData,
       options: Options(
         headers: {
-          'Authorization':
-              'Bearer $token', // Pass the token in the Authorization header
+          'Authorization': 'Bearer $token',
         },
       ),
     );
@@ -110,8 +106,7 @@ class ApiManager {
       data: formData,
       options: Options(
         headers: {
-          'Authorization':
-              'Bearer $token', // Pass the token in the Authorization header
+          'Authorization': 'Bearer $token',
         },
       ),
     );

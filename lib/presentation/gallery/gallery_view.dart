@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery_task/presentation/resources/api_manager.dart';
 import 'package:gallery_task/presentation/resources/utilities.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../resources/constants.dart';
 import '../resources/routes_manager.dart';
 
