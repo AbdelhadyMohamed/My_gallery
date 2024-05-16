@@ -13,4 +13,5 @@ class Constants {
   static const cameraString = "Camera";
   static const baseUrl = "https://flutter.prominaagency.com/api/";
   static const errorCre = "Error in Credentials";
+  static const ok = "OK";
 }

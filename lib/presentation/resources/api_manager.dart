@@ -19,8 +19,8 @@ class ApiManager {
     Response response = await dio.post(
       "${Constants.baseUrl}auth/login",
       data: {
-        'email': userName,
-        'password': password,
+        'email': userName ?? "",
+        'password': password ?? "",
       },
     );
     try {
@@ -30,7 +30,7 @@ class ApiManager {
       return Right(userData);
     } catch (e) {
       print(e.toString());
-      return Left(response.data.toString());
+      return Left(response.data);
     }
   }
 

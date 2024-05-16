@@ -110,15 +110,43 @@ class LogInView extends StatelessWidget {
                                 return AlertDialog(
                                   content: SizedBox(
                                     height: 200.h,
-                                    child: const Text(Constants.errorCre),
+                                    child: Text(l.toString()),
                                   ),
                                 );
                               },
                             );
                           }
                         }, (r) {
-                          Navigator.pushReplacementNamed(
-                              context, Routes.galleryRoute);
+                          if (r.token != null) {
+                            Navigator.pushReplacementNamed(
+                                context, Routes.galleryRoute);
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(Constants.ok),
+                                    ),
+                                  ],
+                                  content: SizedBox(
+                                    height: 200.h,
+                                    child: Center(
+                                      child: Text(
+                                        Constants.errorCre,
+                                        style: TextStyle(
+                                            fontSize: 25.sp, color: Colors.red),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
                         });
                       },
                       style: ButtonStyle(

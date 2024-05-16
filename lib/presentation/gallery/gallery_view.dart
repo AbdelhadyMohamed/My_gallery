@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery_task/presentation/resources/api_manager.dart';
@@ -45,132 +46,137 @@ class _GalleryViewState extends State<GalleryView> {
                 },
               ),
               SizedBox(height: 20.h),
-              Row(
-                children: [
-                  const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50.r)),
-                    width: 100.w,
-                    height: 50.h,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.loginRoute);
-                      },
-                      child: Row(
-                        children: [
-                          SizedBox(width: 5.w),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(5.r)),
-                            child: const Icon(
-                              Icons.arrow_back,
+              Padding(
+                padding: EdgeInsets.all(20.h.w),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50.r)),
+                      width: 100.w,
+                      height: 50.h,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.loginRoute);
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(width: 5.w),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(5.r)),
+                              child: const Icon(
+                                Icons.arrow_back,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5.w),
-                          const Text(Constants.logOutString)
-                        ],
+                            SizedBox(width: 5.w),
+                            const Text(Constants.logOutString)
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            backgroundColor: Colors.white.withOpacity(0.5),
-                            content: SizedBox(
-                              height: 200.h,
-                              child: Column(children: [
-                                GestureDetector(
-                                  onTap: () async {
-                                    apiManager.uploadGalleryImage();
-                                    Navigator.pop(context);
-                                    setState(() {});
-                                  },
-                                  child: Container(
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.white.withOpacity(0.5),
+                              content: SizedBox(
+                                height: 200.h,
+                                child: Column(children: [
+                                  GestureDetector(
+                                    onTap: () async {
+                                      Navigator.pop(context);
+
+                                      await apiManager.uploadGalleryImage();
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                      height: 70.h,
+                                      width: 150.w,
+                                      decoration: BoxDecoration(
+                                        color: Colors.blueGrey,
+                                        borderRadius:
+                                            BorderRadius.circular(20.r),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 10.w),
+                                          const Icon(Icons.image_sharp),
+                                          SizedBox(width: 5.w),
+                                          const Text(
+                                            Constants.galleryString,
+                                            style: TextStyle(fontSize: 22),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 55.h),
+                                  Container(
                                     height: 70.h,
                                     width: 150.w,
                                     decoration: BoxDecoration(
                                       color: Colors.blueGrey,
                                       borderRadius: BorderRadius.circular(20.r),
                                     ),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(width: 10.w),
-                                        const Icon(Icons.image_sharp),
-                                        SizedBox(width: 5.w),
-                                        const Text(
-                                          Constants.galleryString,
-                                          style: TextStyle(fontSize: 22),
-                                        )
-                                      ],
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        Navigator.pop(context);
+                                        await apiManager.uploadCameraImage();
+                                        setState(() {});
+                                      },
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 10.w),
+                                          const Icon(Icons.camera_alt_outlined),
+                                          SizedBox(width: 5.w),
+                                          const Text(
+                                            Constants.cameraString,
+                                            style: TextStyle(fontSize: 22),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 55.h),
-                                Container(
-                                  height: 70.h,
-                                  width: 150.w,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blueGrey,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      apiManager.uploadCameraImage();
-                                      Navigator.pop(context);
-                                      setState(() {});
-                                    },
-                                    child: Row(
-                                      children: [
-                                        SizedBox(width: 10.w),
-                                        const Icon(Icons.camera_alt_outlined),
-                                        SizedBox(width: 5.w),
-                                        const Text(
-                                          Constants.cameraString,
-                                          style: TextStyle(fontSize: 22),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ]),
+                                ]),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50.r)),
+                        width: 100.w,
+                        height: 50.h,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 5.w),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  borderRadius: BorderRadius.circular(5.r)),
+                              child: const Icon(
+                                Icons.arrow_upward_sharp,
+                              ),
                             ),
-                          );
-                        },
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50.r)),
-                      width: 100.w,
-                      height: 50.h,
-                      child: Row(
-                        children: [
-                          SizedBox(width: 5.w),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(5.r)),
-                            child: const Icon(
-                              Icons.arrow_upward_sharp,
-                            ),
-                          ),
-                          SizedBox(width: 5.w),
-                          const Text(Constants.uploadString)
-                        ],
+                            SizedBox(width: 5.w),
+                            const Text(Constants.uploadString)
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                ],
+                    const Spacer(),
+                  ],
+                ),
               ),
               Expanded(
                 child: FutureBuilder(
@@ -180,14 +186,13 @@ class _GalleryViewState extends State<GalleryView> {
                     return GridView.builder(
                       itemCount: images?.length ?? 0,
                       itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(images![index]),
-                                  fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(25.r)),
-                          // width: 10,
-                          // height: 15,
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                              35.r), // Adjust the radius as needed
+                          child: CachedNetworkImage(
+                            imageUrl: images![index],
+                            fit: BoxFit.cover,
+                          ),
                         );
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
