@@ -1,16 +1,11 @@
-# gallery_task
+A gallery Mobile Application integrating Api from ProMina Agency:
+1-sign in
+2-see my gallery
+3-upload image from my phone gallery
+4-upload an image using my phone camera
 
-A new Flutter project.
+In this project i have used: Dio-Cached Network Image- hive- screenutils -image picker -either Packages
 
-## Getting Started
+Vedio:
+https://github.com/AbdelhadyMohamed/My_gallery/assets/86628356/e83b3576-68fa-4c41-b8e5-ef38b235604f
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
