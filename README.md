@@ -6,6 +6,6 @@ A gallery Mobile Application integrating Api from ProMina Agency:
 
 In this project i have used: Dio-Cached Network Image- hive- screenutils -image picker -either Packages
 
-Vedio:
+Video:
 https://github.com/AbdelhadyMohamed/My_gallery/assets/86628356/e83b3576-68fa-4c41-b8e5-ef38b235604f
 
