@@ -57,8 +57,7 @@ class LogInView extends StatelessWidget {
                   TextField(
                     controller: userNameController,
                     autofocus: false,
-                    style: TextStyle(
-                        fontSize: 15.sp, color: const Color(0xFFbdc6cf)),
+                    style: TextStyle(fontSize: 15.sp),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -77,10 +76,10 @@ class LogInView extends StatelessWidget {
                   ),
                   SizedBox(height: 50.h),
                   TextField(
+                    obscureText: true,
                     controller: passwordController,
                     autofocus: false,
-                    style: TextStyle(
-                        fontSize: 15.sp, color: const Color(0xFFbdc6cf)),
+                    style: TextStyle(fontSize: 15.sp),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,

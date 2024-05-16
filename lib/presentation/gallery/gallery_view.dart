@@ -5,9 +5,14 @@ import 'package:gallery_task/presentation/resources/utilities.dart';
 import '../resources/constants.dart';
 import '../resources/routes_manager.dart';
 
-class GalleryView extends StatelessWidget {
+class GalleryView extends StatefulWidget {
   const GalleryView({super.key});
 
+  @override
+  State<GalleryView> createState() => _GalleryViewState();
+}
+
+class _GalleryViewState extends State<GalleryView> {
   @override
   Widget build(BuildContext context) {
     ApiManager apiManager = ApiManager();
@@ -86,6 +91,7 @@ class GalleryView extends StatelessWidget {
                                   onTap: () async {
                                     apiManager.uploadGalleryImage();
                                     Navigator.pop(context);
+                                    setState(() {});
                                   },
                                   child: Container(
                                     height: 70.h,
@@ -118,6 +124,8 @@ class GalleryView extends StatelessWidget {
                                   child: GestureDetector(
                                     onTap: () async {
                                       apiManager.uploadCameraImage();
+                                      Navigator.pop(context);
+                                      setState(() {});
                                     },
                                     child: Row(
                                       children: [
